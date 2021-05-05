@@ -1,0 +1,13 @@
+name: WilksCalculator
+title: WilksCalculator
+username:
+account: rtang
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4085141
+bundleId: 4562200
+url: https://rtang.shinyapps.io/WilksCalculator/
+when: 1620247524.77879
+lastSyncTime: 1620247524.77879
+asMultiple: FALSE
+asStatic: FALSE

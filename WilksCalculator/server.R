@@ -54,6 +54,8 @@ shinyServer(function(input, output) {
             xlab("Your Weight in lbs") +
             ylab("Your Estimated Wilks Score") +
             ggtitle("Wilks Calculator") +
+            theme(plot.title = element_text(hjust = 0.5))+
+            theme(plot.title = element_text(size=25))+
             stat_function(fun = func1) + 
             xlim(100,350)
         WilksPlot
