@@ -1,0 +1,76 @@
+Wilks Calculator: Reproducible Pitch
+========================================================
+author: Ran Tang
+date: May 4th 2021
+font-family: 'Helvetica'
+autosize: true
+transition: fade
+
+
+<br />
+<br />
+
+<center>
+### <span style="color:blue">*Measuring your own strength across weight classes*</span>
+</center>
+
+Introduction - Coursera Data Science Specialization Course Project
+========================================================
+
+<br />
+The Wilks Coefficient, or Wilks Score is a mathematical formula used to compare the relative strengths of powerlifters across weight classes and across gender.
+
+We've created an application that calculates your Wilks Score and deployed it using Shiny, this presentation introduces our application
+and gives some background on what the Wilks Score is.
+
+
+Background Information
+========================================================
+
+<br />
+
+##### The Wilks Score can be a useful tool to track strength progression through bulk-cut cycles and compare lifters of different bodytypes
+
+* The Wilks Coefficient has been used by the International Powerlifting Federation to compare weightlifters across weight classes
+
+More information on the Wilks Coefficient and how it's calculated can be found here:
+[wiki](https://en.wikipedia.org/wiki/Wilks_coefficient)
+
+
+Wilks Score Calculator
+========================================================
+
+#### The application can be found here:
+
+[Wilks Calculator](https://rtang.shinyapps.io/WilksCalculator/)
+
+#### The Github Repository and source code for the app can be found here:
+
+[Git Repo](https://github.com/ran-tang/DevelopingDataProductsFinal/)
+
+Code Example
+========================================================
+
+If you were male and your lifting total (bench + squat + deadlift) in lbs
+was 1000. Then your Wilks Score across various body weights would look like this:
+
+```{r, echo=FALSE, fig.align ='center', fig.width = 12}
+library(ggplot2)
+am <- -216.0475144
+bm <- 16.2606339
+cm <- -0.002388645
+dm <- -0.00113732
+em <- 7.01863 * 10^-6
+fm <- -1.291 * 10^-8
+totalkg <- 1000/2.2
+func1 <- function(x) totalkg*500/(am + bm*(x/2.2) + cm*(x/2.2)^2 + dm*(x/2.2)^3 + em*(x/2.2)^4 + fm*(x/2.2)^5)
+WilksPlot <- ggplot(data = data.frame(x = 0), mapping=aes(x = x)) +
+  xlab("Your Weight in lbs") +
+  ylab("Your Estimated Wilks Score") +
+  ggtitle("Wilks Calculator") +
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(plot.title = element_text(size=25))+
+  stat_function(fun = func1) + 
+  xlim(125,250)
+WilksPlot
+```
